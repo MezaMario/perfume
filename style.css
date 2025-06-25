@@ -1,0 +1,92 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #f8f5f8, #e8d5f2); /* degradado lila claro */
+  color: #2e2e2e;
+}
+
+/* Cards */
+.perfume-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  background-color: #ffffff;
+}
+
+.perfume-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25);
+}
+
+/* Etiqueta decorativa */
+.label-card {
+  font-family: 'Georgia', serif;
+  color: #5a2a83;
+  font-size: 1.3em;
+  background-color: #f3e5f5;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+  margin: 12px 0;
+}
+
+/* Modales */
+.modal-content {
+  background-color: #fbeffb;
+  border-radius: 15px;
+  border: none;
+}
+
+.modal-title {
+  color: #6a1b9a;
+}
+.modal-body {
+  color: #4a148c;
+}
+.modal-footer {
+  border-top: 1px solid #e1bee7;
+}
+.modal-footer .btn {
+  background-color: #ab47bc;
+  color: #fff;
+  border-radius: 8px;
+}
+.modal-footer .btn:hover {
+  background-color: #9c27b0;
+}
+.modal-footer .btn-secondary {
+  background-color: #e1bee7;
+  color: #4a148c;
+}
+
+/* Botón de cierre */
+button.close {
+  color: #6a1b9a;
+  opacity: 1;
+}
+button.close:hover {
+  color: #4a148c;
+}
+
+.btn-close {
+  background-color: #f3e5f5;
+}
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  z-index: 1000;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
