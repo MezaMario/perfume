@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -7,13 +8,61 @@
   <title>Aromas Mom Etolie Parfum</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/v4-shims.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/fontawesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/brands.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <script src="https://www.paypal.com/sdk/js?client-id=TU_CLIENT_ID&currency=USD"></script>
 </head>
 <body>
+  <!-- Navbar mejorado -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Aromas Mom Etolie</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#inicio">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#hombres">Hombres</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#mujeres">Mujeres</a>
+          </li>
+        </ul>
+        <!-- Icono del carrito con contador -->
+        <div class="d-flex">
+          <button class="btn btn-outline-light position-relative" id="cartButton">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCounter">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Carrito de compras (oculto inicialmente) -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Tu Carrito</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body" id="cartItems">
+      <!-- Los productos se agregarán aquí dinámicamente -->
+      <div class="text-center" id="emptyCartMessage">
+        <p>Tu carrito está vacío</p>
+      </div>
+    </div>
+    <div class="offcanvas-footer p-3 border-top">
+      <div class="d-flex justify-content-between mb-3">
+        <h5>Total:</h5>
+        <h5 id="cartTotal">$0.00</h5>
+      </div>
+      <button class="btn btn-primary w-100" id="checkoutButton">Proceder al Pago</button>
+    </div>
+  </div>
   <!-- Carrusel de imágenes (portada) -->
   <div id="carouselPerfumes" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
   <div class="carousel-inner">
@@ -217,6 +266,13 @@
           <p>!IMAGEN REFERENCIAL! Inspirado en el perfume Yara Lattafa es una fragancia que evoca la frescura y la elegancia. Con notas de salida cítricas, un corazón floral y una base amaderada, es perfecta para cualquier ocasión.</p>
           <p>Precio: $15.00</p>
         </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" 
+          onclick="addToCart('🌸 Yara Lattafa 🌸', '$15.00', 'img/yara.png')">
+          Agregar al carrito
+        </button>
+        </div>
       </div>
     </div>
   </div>
@@ -232,6 +288,13 @@
           <img src="img/212ch.png" class="img-fluid mb-3" alt="Perfume 2">
           <p>!IMAGEN REFERENCIAL! Inspirado en el perfume 212 VIP Men de Carolina Herrera es una fragancia de la familia olfativa Oriental Amaderada para Hombres. 212 VIP Men se lanzo en 2011. 212 VIP Men fue creada por Emilie (Bevierre) Coppermann y Lucas Sieuzac. Las Notas de Salida son lima (limon verde), caviar, pimienta, jengibre y maracuya.</p>
           <p>Precio: $15.00</p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" 
+          onclick="addToCart('212 Carolina Herrera', '$15.00', 'img/212ch.png')">
+          Agregar al carrito
+        </button>
         </div>
       </div>
     </div>
@@ -249,6 +312,13 @@
           <p>¡IMAGEN REFERENCIAL! Inspirado en Le Male de Jean Paul Gaultier es una fragancia icónica que combina menta fresca, lavanda y vainilla para crear un aroma seductor y envolvente. Su esencia representa la sensualidad y el estilo del hombre moderno.</p>
           <p>Precio: $15.00</p>
         </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" 
+          onclick="addToCart('Le Male Jean Poul Goultier', '$15.00', 'img/jpgu.png')">
+          Agregar al carrito
+        </button>
+        </div>
       </div>
     </div>
   </div>
@@ -264,6 +334,13 @@
           <img src="img/souva.png" class="img-fluid mb-3" alt="Perfume 3">
           <p>¡IMAGEN REFERENCIAL! Inspirado en Sauvage Elixir de Dior es una fragancia intensa y misteriosa que captura la esencia de la elegancia masculina. Con notas especiadas, lavanda y maderas profundas, este elixir evoca poder, carisma y sofisticación. Ideal para quienes buscan dejar una impresión inolvidable, es más que un perfume: es una declaración de carácter.</p>
           <p>Precio: $15.00</p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" 
+          onclick="addToCart('Sauvage Elixir de DIOR', '$15.00', 'img/souva.png')">
+          Agregar al carrito
+        </button>
         </div>
       </div>
     </div>
@@ -281,6 +358,13 @@
           <p>¡IMAGEN REFERENCIAL! Inspirado en Asad de Lattafa es una fragancia oriental intensa que combina ámbar, especias y notas ahumadas para crear un aroma poderoso y masculino. Ideal para noches especiales, transmite fuerza, misterio y distinción en cada gota.</p>
           <p>Precio: $15.00</p>
         </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" 
+          onclick="addToCart('ASAD LATTAFA', '$15.00', 'img/asap.png')">
+          Agregar al carrito
+        </button>
+        </div>
       </div>
     </div>
   </div>
@@ -296,6 +380,13 @@
           <img src="img/polo.png" class="img-fluid mb-3" alt="Perfume 6">
           <p>¡IMAGEN REFERENCIAL! Inspirado en Polo Red de Ralph Lauren es una fragancia vibrante y energética que mezcla notas de arándano, toronja y madera ámbar. Inspirado en la velocidad y la pasión, es el aroma perfecto para el hombre audaz y dinámico.</p>
           <p>Precio: $15.00</p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" 
+          onclick="addToCart('Polo Red Ralph Lauren', '$15.00', 'img/polo.png')">
+          Agregar al carrito
+        </button>
         </div>
       </div>
     </div>
@@ -315,6 +406,13 @@
           <p>¡IMAGEN REFERENCIAL! Inspirado en Khamrah de Lattafa es una fragancia cálida y exótica que combina canela, dátiles y vainilla sobre un fondo de maderas suaves. Su aroma dulce, especiado y seductor evoca elegancia oriental y una presencia inolvidable.</p>
           <p>Precio: $15.00</p>
         </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" 
+          onclick="addToCart('KHAMRAH DE LATTAFA', '$15.00', 'img/kan.png')">
+          Agregar al carrito
+        </button>
+        </div>
       </div>
     </div>
   </div>
@@ -330,6 +428,13 @@
           <img src="img/cococh.png" class="img-fluid mb-3" alt="Perfume 6">
           <p>¡IMAGEN REFERENCIAL! Inspirado en 🌸 Coco Mademoiselle de Chanel es una fragancia fresca y sofisticada que fusiona notas cítricas, rosa y pachulí. Femenina, moderna y con carácter, representa a la mujer libre y elegante que deja huella a su paso.</p>
           <p>Precio: $15.00</p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" 
+          onclick="addToCart('🌸 Coco Mademoiselle de Chanel 🌸', '$15.00', 'img/cococh.png')">
+          Agregar al carrito
+        </button>
         </div>
       </div>
     </div>
@@ -347,6 +452,13 @@
           <p>¡IMAGEN REFERENCIAL! Inspirado en 🌼 J’adore L’Eau de Dior es una fragancia luminosa y floral que combina neroli, magnolia y notas verdes en un acorde fresco y delicado. Es la expresión pura de la feminidad moderna: natural, elegante y radiante.</p>
           <p>Precio: $15.00</p>
         </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" 
+          onclick="addToCart('🌼 Jadore  LEAU', '$15.00', 'img/jado.png')">
+          Agregar al carrito
+        </button>
+        </div>
       </div>
     </div>
   </div>
@@ -362,6 +474,13 @@
           <img src="img/lex.png" class="img-fluid mb-3" alt="Perfume 6">
           <p>¡IMAGEN REFERENCIAL! Inspirado en 🌹 L'Extase Caresse de Roses es una fragancia suave y sensual que entrelaza rosas frescas, almizcles y un toque empolvado. Romántica y envolvente, revela la feminidad en su forma más íntima y delicada.</p>
           <p>Precio: $15.00</p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" 
+          onclick="addToCart('🌹 L EXTASE CARESSE DE ROSES', '$15.00', 'img/lex.png')">
+          Agregar al carrito
+        </button>
         </div>
       </div>
     </div>
@@ -379,6 +498,13 @@
           <p>¡IMAGEN REFERENCIAL! Inspirado en 🕊️ L'Air du Temps Eau de Nina Ricci es una fragancia atemporal que mezcla clavel, gardenia y almizcle en una sinfonía floral luminosa. Símbolo de paz y feminidad, es delicada como una caricia y eterna como el amor.</p>
           <p>Precio: $15.00</p>
         </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" 
+          onclick="addToCart('🕊️ LAir du Temps Eau de Nina Ricci', '$15.00', 'img/lea.png')">
+          Agregar al carrito
+        </button>
+        </div>
       </div>
     </div>
   </div>
@@ -394,6 +520,13 @@
           <img src="img/nina.png" class="img-fluid mb-3" alt="Perfume 6">
           <p>¡IMAGEN REFERENCIAL! Inspirado en 🍏 Nina de Nina Ricci es una fragancia dulce y encantadora que combina manzana caramelizada, flores blancas y almizcles suaves. Juvenil y soñadora, evoca un cuento de hadas moderno lleno de magia y feminidad.</p>
           <p>Precio: $15.00</p>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" 
+          onclick="addToCart('🍏 Nina de Nina Ricci', '$15.00', 'img/nina.png')">
+          Agregar al carrito
+        </button>
         </div>
       </div>
     </div>
@@ -411,76 +544,8 @@
     <a class="btn btn-secondary btn-square mx-1" href="https://www.instagram.com/dmarcosbahia?igsh=YzljYTk1ODg3Zg=="><i class="fab fa-instagram"></i></a>
     <a class="btn btn-secondary btn-square mx-1" href="https://x.com/ab_pozo1982?t=z02vfkbjerYi30gLJQ3O-g&s=09"><i class="fab fa-x"></i></a>
   </div>
-  
-  <div class="modal fade" id="modal2" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Perfume Elegante Nº2</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-          Estas Son imagenes del perfumechannel numero3 que esta dentro de nuestro catalogo  aquí.
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="modal fade" id="modal3" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Perfume Elegante Nº3</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-          Estas Son imagenes del perfumechannel numero3 que esta dentro de nuestro catalogo  aquí.
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- <div class="modal fade" id="modal4" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Perfume Elegante Nº4</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-          Estas Son imagenes del perfumechannel numero3 que esta dentro de nuestro catalogo  aquí.
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- <div class="modal fade" id="modal5" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Perfume Elegante Nº5</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-          Estas Son imagenes del perfumechannel numero3 que esta dentro de nuestro catalogo  aquí.
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-  <!-- <div class="modal fade" id="modal6" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Perfume Elegante Nº6</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-          Estas Son imagenes del perfumechannel numero3 que esta dentro de nuestro catalogo  aquí.
-        </div>
-      </div>
-    </div>
-  </div> -->
   <!-- Footer -->
   <footer class="text-center text-lg-start bg-light text-muted mt-5">
     <div class="btn-btn-facebook"></div>
@@ -491,6 +556,172 @@
   
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Carrito de compras
+  let cart = [];
+  
+  // Inicializar elementos del DOM
+  document.addEventListener('DOMContentLoaded', function() {
+    // Botón del carrito
+    document.getElementById('cartButton').addEventListener('click', function() {
+      const cartOffcanvas = new bootstrap.Offcanvas(document.getElementById('cartOffcanvas'));
+      cartOffcanvas.show();
+    });
+    
+    // Actualizar carrito
+    updateCart();
+    
+    // Agregar transiciones a las secciones
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+      section.classList.add('animate__animated', 'animate__fadeInUp');
+    });
+  });
+  
+  // Función para agregar producto al carrito
+  function addToCart(productName, price, image) {
+    const existingItem = cart.find(item => item.name === productName);
+    
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.push({
+        name: productName,
+        price: price,
+        image: image,
+        quantity: 1
+      });
+    }
+    
+    updateCart();
+    
+    // Mostrar notificación
+    const toast = new bootstrap.Toast(document.createElement('div'));
+    toast._element.classList.add('toast', 'align-items-center', 'text-white', 'bg-success', 'border-0');
+    toast._element.innerHTML = `
+      <div class="d-flex">
+        <div class="toast-body">
+          ${productName} agregado al carrito
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    `;
+    document.body.appendChild(toast._element);
+    toast.show();
+    
+    setTimeout(() => {
+      document.body.removeChild(toast._element);
+    }, 3000);
+  }
+  
+  // Función para actualizar el carrito
+  function updateCart() {
+    const cartItemsElement = document.getElementById('cartItems');
+    const cartTotalElement = document.getElementById('cartTotal');
+    const cartCounterElement = document.getElementById('cartCounter');
+    const emptyCartMessage = document.getElementById('emptyCartMessage');
+    
+    if (cart.length === 0) {
+      emptyCartMessage.style.display = 'block';
+      cartItemsElement.innerHTML = '';
+    } else {
+      emptyCartMessage.style.display = 'none';
+      
+      let cartHTML = '';
+      let total = 0;
+      
+      cart.forEach((item, index) => {
+        total += parseFloat(item.price.replace('$', '')) * item.quantity;
+        
+        cartHTML += `
+          <div class="cart-item">
+            <img src="${item.image}" class="cart-item-img" alt="${item.name}">
+            <div class="cart-item-details">
+              <h6 class="cart-item-title">${item.name}</h6>
+              <p class="cart-item-price">${item.price} x ${item.quantity}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, -1)">-</button>
+                  <span class="px-2">${item.quantity}</span>
+                  <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, 1)">+</button>
+                </div>
+                <button class="cart-item-remove" onclick="removeFromCart(${index})">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      
+      cartItemsElement.innerHTML = cartHTML;
+      cartTotalElement.textContent = `$${total.toFixed(2)}`;
+    }
+    
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCounterElement.textContent = totalItems;
+    cartCounterElement.style.display = totalItems > 0 ? 'block' : 'none';
+  }
+  
+  function updateQuantity(index, change) {
+    const newQuantity = cart[index].quantity + change;
+    
+    if (newQuantity < 1) {
+      removeFromCart(index);
+    } else {
+      cart[index].quantity = newQuantity;
+      updateCart();
+    }
+  }
+  
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCart();
+  }
+  
+  // Función para proceder al pago con PayPal
+  document.getElementById('checkoutButton').addEventListener('click', function() {
+    if (cart.length === 0) {
+      alert('Tu carrito está vacío');
+      return;
+    }
+    paypalCheckout();
+  });
+  
+  function paypalCheckout() {
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: cart.reduce((total, item) => 
+                total + (parseFloat(item.price.replace('$', '')) * item.quantity), 0).toFixed(2),
+              currency_code: 'USD'
+            },
+            items: cart.map(item => ({
+              name: item.name,
+              unit_amount: {
+                value: parseFloat(item.price.replace('$', '')),
+                currency_code: 'USD'
+              },
+              quantity: item.quantity.toString()
+            }))
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('Pago completado por ' + details.payer.name.given_name);
+          cart = [];
+          updateCart();
+        });
+      },
+      onError: function(err) {
+        console.error('Error en el pago:', err);
+        alert('Ocurrió un error al procesar el pago');
+      }
+    }).render('#checkoutButton');
+  }
+</script>
 </body>
 </html>
