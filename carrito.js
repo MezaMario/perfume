@@ -49,7 +49,8 @@ function addToCart(productName, price, imageUrl) {
   }
 
   updateCartModal();
-  showToast(`${productName} agregado al carrito`);
+  showToast(`${name} agregado al carrito`);
+  saveCart(); // Guardar carrito en localStorage
 }
 
 function updateCartModal() {
