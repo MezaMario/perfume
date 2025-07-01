@@ -1,5 +1,3 @@
-// Script de Carrito para index.html
-
 let cart = [];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -49,8 +47,10 @@ function addToCart(productName, price, imageUrl) {
   }
 
   updateCartModal();
-  showToast(`${name} agregado al carrito`);
-  saveCart(); // Guardar carrito en localStorage
+  updateCartCounter(); 
+  showToast(`${productName} agregado al carrito`);
+  saveCart();
+
 }
 
 function updateCartModal() {
@@ -91,6 +91,29 @@ function showToast(message) {
 
 function showCart() {
   const offcanvasElement = document.getElementById('cartOffcanvas');
-  const offcanvas = new bootstrap.Offcanvas(offcanvasElement);
-  offcanvas.show();
+  if (bootstrap.Offcanvas.getInstance(offcanvasElement)) {
+    bootstrap.Offcanvas.getInstance(offcanvasElement).show();
+  } else {
+    const offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+    offcanvas.show();
+  }
 }
+
+function saveCart() {
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+function updateCartCounter() {
+  const cartCounter = document.getElementById('cartCounter');
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  cartCounter.textContent = totalItems;
+}
+
+function loadCart() {
+  const savedCart = localStorage.getItem('cart');
+  if (savedCart) {
+    cart = JSON.parse(savedCart);
+    updateCartModal();
+    updateCartCounter(); 
+  }
+}
+loadCart();
